@@ -1,11 +1,15 @@
-import { Button } from "@/components/ui/button"
+import React from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <main className="max-w-5xl mx-auto px-4 py-6">
+        
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
