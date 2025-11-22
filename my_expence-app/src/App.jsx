@@ -1,15 +1,18 @@
-import React from "react";
+
+import React from 'react'
+import Sidebar from './components/ui/Sidebar'  // adjust the path according to your folder structure
+
 import Header from "./components/Header";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
+      <Sidebar />
       <Header />
-      <main className="max-w-5xl mx-auto px-4 py-6">
+      
         
-      </main>
+   
     </div>
   );
-}
-
-export default App;
+export default App
