@@ -18,7 +18,7 @@ const Header = () => {
             <Button
               size="lg"
               className="bg-slate-900 text-gray-300 border rounded-4xl"
-              onClick={() => navigate("/AddExpenseForm")}
+              onClick={() => navigate("/add-expense")}
             >
               New Expense
             </Button>
