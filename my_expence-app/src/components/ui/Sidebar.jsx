@@ -29,7 +29,7 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
 
   const handleMonthChange = (value) => {
     setLocalMonth(value);
-    onFilterChange?.({ month: value, catogory: localCategory });
+    onFilterChange?.({ month: value, category: localCategory });
   };
 
   const categories = useMemo(() => {
@@ -44,7 +44,7 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
 
   const handleCategoryChange = (value) => {
     setLocalCategory(value);
-    onFilterChange?.({ month: localMonth, catogory: value });
+    onFilterChange?.({ month: localMonth, category: value });
   };
 
   return (
@@ -57,13 +57,13 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
         <label className="text-sm font-medium text-gray-500">
           Filter by Month
         </label>
-        <Select value={localMonth} onValueChnage={handleMonthChange}>
+        <Select value={localMonth} onValueChange={handleMonthChange}>
           <SelectTrigger>
             <SelectValue placeholder="All Months" />
           </SelectTrigger>
           <SelectContent >
             {months.map((m) => (
-              <SelectItem key={m} value={m} className='text-white'>
+              <SelectItem key={m} value={m}>
                 {m === "all" ? "All Months" : m}
               </SelectItem>
             ))}
@@ -74,7 +74,7 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
         <label className="text-sm font-medium text-gray-500">
           Filter by Category
         </label>
-        <Select value={localCategory} onValueChnage={handleCategoryChange}>
+        <Select value={localCategory} onValueChange={handleCategoryChange}>
           <SelectTrigger>
             <SelectValue placeholder="All Categories.." />
           </SelectTrigger>
