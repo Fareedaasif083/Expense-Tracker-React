@@ -48,7 +48,7 @@ const Dashboard = ( {expenses,setExpenses,filters}) => {
     return expenseList.filter((e) => {
       const matchMonths =
         filters.month === "all" ||
-        new Date(e.date).toLacalString("default", { month: "long" }) ===
+        new Date(e.date).toLocaleString("default", { month: "long" }) ===
           filters.month;
       const matchCategory =
         filters.category === "all" || e.category === filters.category;
