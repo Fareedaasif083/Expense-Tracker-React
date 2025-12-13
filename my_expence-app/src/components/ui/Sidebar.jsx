@@ -63,7 +63,7 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
           </SelectTrigger>
           <SelectContent >
             {months.map((m) => (
-              <SelectItem key={m} value={m} className='text-white'>
+              <SelectItem key={m} value={m}>
                 {m === "all" ? "All Months" : m}
               </SelectItem>
             ))}
