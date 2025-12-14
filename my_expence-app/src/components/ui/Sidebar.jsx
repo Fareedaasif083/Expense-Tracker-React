@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   Select,
   SelectTrigger,
@@ -11,36 +11,31 @@ import { Badge } from "@/components/ui/badge";
 const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
   const [localMonth, setLocalMonth] = useState(filters.month || "all");
   const [localCategory, setLocalCategory] = useState(filters.category || "all");
+  
+const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
 
-  const total = useMemo(() => {
-    return expenses.reduce((d, e) => d + Number(e.amount || 0), 0);
-  }, [expenses]);
-
-  const months = useMemo(() => {
-    const set = new Set();
+  const setMonths = new Set();
     expenses.forEach((e) => {
       if (e.date) {
         const m = new Date(e.date).toLocaleString("default", { month: "long" });
-        set.add(m);
+        setMonths.add(m);
       }
     });
-    return ["all", ...Array.from(set)];
-  }, [expenses]);
+    const months= ["all", ...Array.from(setMonths)];
+
 
   const handleMonthChange = (value) => {
     setLocalMonth(value);
     onFilterChange?.({ month: value, category: localCategory });
   };
 
-  const categories = useMemo(() => {
-    const set = new Set();
+  const setCategories = new Set();
     expenses.forEach((e) => {
       if (e.category) {
-        set.add(e.category);
+        setCategories.add(e.category);
       }
     });
-    return ["all", ...Array.from(set)];
-  }, [expenses]);
+    const categories= ["all", ...Array.from(setCategories)];
 
   const handleCategoryChange = (value) => {
     setLocalCategory(value);
