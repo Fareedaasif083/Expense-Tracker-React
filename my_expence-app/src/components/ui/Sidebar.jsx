@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   Select,
   SelectTrigger,
@@ -12,38 +12,35 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
   const [localMonth, setLocalMonth] = useState(filters.month || "all");
   const [localCategory, setLocalCategory] = useState(filters.category || "all");
 
-  const total = useMemo(() => {
-    return expenses.reduce((d, e) => d + Number(e.amount || 0), 0);
-  }, [expenses]);
+ const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
 
-  const months = useMemo(() => {
-    const set = new Set();
+  const setMonths = new Set();
     expenses.forEach((e) => {
       if (e.date) {
         const m = new Date(e.date).toLocaleString("default", { month: "long" });
-        set.add(m);
+        setMonths.add(m);
       }
     });
-    return ["all", ...Array.from(set)];
-  }, [expenses]);
+    const months= ["all", ...Array.from(setMonths)];
+
 
   const handleMonthChange = (value) => {
     setLocalMonth(value);
     onFilterChange?.({ month: value, category: localCategory });
   };
 
-  const categories = useMemo(() => {
-    const set = new Set();
+  const setCategories = new Set();
     expenses.forEach((e) => {
       if (e.category) {
-        set.add(e.category);
+        setCategories.add(e.category);
       }
     });
-    return ["all", ...Array.from(set)];
-  }, [expenses]);
+    const categories= ["all", ...Array.from(setCategories)];
 
   const handleCategoryChange = (value) => {
     setLocalCategory(value);
+    onFilterChange?.({ month: localMonth, category: value });
+    onFilterChange?.({ month: localMonth, catogory: value });
     onFilterChange?.({ month: localMonth, category: value });
   };
 
@@ -53,16 +50,19 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
         <div className="text-sm text-gray-500">Total Expense</div>
         <div className="text-2xl font-semibold">${total}</div>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1  text-white">
         <label className="text-sm font-medium text-gray-500">
           Filter by Month
         </label>
         <Select value={localMonth} onValueChange={handleMonthChange}>
-          <SelectTrigger>
+          <SelectTrigger >
             <SelectValue placeholder="All Months" />
+          
           </SelectTrigger>
-          <SelectContent >
+          <SelectContent className='bg-slate-900 text-white z-50'>
             {months.map((m) => (
+              <SelectItem key={m} value={m}>
+              <SelectItem key={m} value={m} className='text-white'
               <SelectItem key={m} value={m}>
                 {m === "all" ? "All Months" : m}
               </SelectItem>
@@ -70,15 +70,15 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1  text-white">
         <label className="text-sm font-medium text-gray-500">
           Filter by Category
         </label>
         <Select value={localCategory} onValueChange={handleCategoryChange}>
-          <SelectTrigger>
+          <SelectTrigger >
             <SelectValue placeholder="All Categories.." />
           </SelectTrigger>
-          <SelectContent>{categories.map((b) => (
+          <SelectContent className='bg-slate-900 text-white z-50'>{categories.map((b) => (
               <SelectItem key={b} value={b}>
                 {b === "all" ? "All Categories" : b}
               </SelectItem>
