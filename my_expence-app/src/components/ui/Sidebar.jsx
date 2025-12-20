@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
   const [localMonth, setLocalMonth] = useState(filters.month || "all");
   const [localCategory, setLocalCategory] = useState(filters.category || "all");
+  
+const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
 
  const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
 
