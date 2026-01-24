@@ -47,7 +47,7 @@ const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
   };
 
   return (
-    <aside className=" w-64 h-screen top-0 left-0 fixed bg-slate-900 shadow-sm p-4 flex flex-col gap-6 ">
+    <aside className=" w-64  top-15 h-screen left-0 fixed bg-slate-900 shadow-sm p-4 flex flex-col gap-6 ">
       <div className="bg-gray-100 p-4 rounded-md text-center">
         <div className="text-sm text-gray-500">Total Expense</div>
         <div className="text-2xl font-semibold">${total}</div>
@@ -63,9 +63,8 @@ const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
           </SelectTrigger>
           <SelectContent className='bg-slate-900 text-white z-50'>
             {months.map((m) => (
-              <SelectItem key={m} value={m}>
-              <SelectItem key={m} value={m} className='text-white'
-              <SelectItem key={m} value={m}>
+              
+              <SelectItem key={m} value={m} className='text-white'>
                 {m === "all" ? "All Months" : m}
               </SelectItem>
             ))}
