@@ -46,7 +46,7 @@
 import { useState } from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Login from "./Login";
-import Signup from "./Signup";
+import Signup from "./signup";
 
 export default function Authentication({ setUser }) {
   const [showSignup, setShowSignup] = useState(false); // false = show login by default
