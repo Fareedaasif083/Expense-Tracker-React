@@ -12,7 +12,7 @@ const Header = ({user,setUser}) => {
     else{
       setUser(null)
     }
-  }:
+  };
   return (
     <div>
       <header className="w-full bg-white shadow-sm">
