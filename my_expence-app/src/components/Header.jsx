@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import Authentication from "./Authentication"
-import { supabase } from "./supabaseClients"
+import { supabase } from "../supabaseClients"
 
 const Header = ({user,setUser}) => {
   const logout=async() =>{
