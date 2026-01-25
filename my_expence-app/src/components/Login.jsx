@@ -35,6 +35,7 @@ export default function Login({ loginSuccess,onFlip }) {
 
   return (
     <div className=" flex items-center justify-center">
+      <div className="w-full max-w-sm p-6 bg-gray-800">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Login
         </h2>
@@ -72,6 +73,7 @@ export default function Login({ loginSuccess,onFlip }) {
           <span className="text-white text-sm">Don't have an account? </span>
           <button onClick={onFlip} className="text-blue-400 text-sm underline">Sign Up</button>
         </div>
+     </div>
     </div>
   );
 }
