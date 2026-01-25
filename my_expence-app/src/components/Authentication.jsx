@@ -51,13 +51,8 @@ import Signup from "./Signup";
 export default function Authentication({ setUser }) {
   const [showSignup, setShowSignup] = useState(false);
 
-  const handleSuccessLogin = (user) => {
-    setUser(user);
-  };
-
-  const handleSuccessSignup = (user) => {
-    setUser(user);
-  };
+  const handleSuccessLogin = (user) => setUser(user);
+  const handleSuccessSignup = (user) => setUser(user);
 
   return (
     <Dialog>
@@ -79,7 +74,7 @@ export default function Authentication({ setUser }) {
               Already have an account?{" "}
               <button
                 className="text-blue-500 underline"
-                onClick={() => setShowSignup(false)}
+                onClick={() => setShowSignup(false)} // switches to login
               >
                 Login
               </button>
@@ -92,7 +87,7 @@ export default function Authentication({ setUser }) {
               Don't have an account?{" "}
               <button
                 className="text-blue-500 underline"
-                onClick={() => setShowSignup(true)}
+                onClick={() => setShowSignup(true)} // switches to signup
               >
                 Sign Up
               </button>
@@ -103,4 +98,3 @@ export default function Authentication({ setUser }) {
     </Dialog>
   );
 }
-
