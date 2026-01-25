@@ -34,8 +34,8 @@ export default function Login({ loginSuccess,onFlip }) {
   };
 
   return (
-    <div className=" flex items-center justify-center">
-      <div className="w-full max-w-sm p-6 bg-gray-800  rounded-lg ">
+    <div className=" w-full">
+      <div className="w-full max-w-sm p-6 ">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Login
         </h2>
