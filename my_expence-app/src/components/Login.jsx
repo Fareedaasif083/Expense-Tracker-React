@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { supabase } from "../supabaseClients"
 
-export default function Login({ loginSuccess }) {
+export default function Login({ loginSuccess,onFlip }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -68,6 +68,10 @@ export default function Login({ loginSuccess }) {
         >
           Login with Google
         </Button>
+      <div className="mt-4 text-center">
+          <span className="text-white text-sm">Don't have an account? </span>
+          <button onClick={onFlip} className="text-blue-400 text-sm underline">Sign Up</button>
+        </div>
     </div>
   );
 }
