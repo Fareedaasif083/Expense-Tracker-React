@@ -45,7 +45,7 @@ return(
   <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
       <main className="max-w-5xl mx-auto px-4 py-6">
          {!user &&(
-           <div className="mb-4 ml-60 p-4 bg-yellow-100 text-yellow-800 rounded">
+           <div className="mb-4 ml-500 p-4 bg-yellow-100 text-yellow-800 rounded">
                Please login or signup to save and manage your expenses.
            </div>
            )}
