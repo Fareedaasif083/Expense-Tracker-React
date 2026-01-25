@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { supabase } from "../supabaseClients"
 
-export default function Signup({ signupSuccess }) {
+export default function Signup({ signupSuccess, onFlip }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -52,6 +52,10 @@ export default function Signup({ signupSuccess }) {
             Sign Up
           </Button>
         </form>
+        <div className="mt-4 text-center">
+          <span className="text-white text-sm">Already have an account? </span>
+          <button onClick={onFlip} className="text-blue-400 text-sm underline">Login</button>
+        </div>
       </div>
     </div>
   );
