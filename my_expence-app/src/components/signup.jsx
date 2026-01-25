@@ -24,7 +24,7 @@ export default function Signup({ signupSuccess }) {
   };
 
   return (
-    <div className="min-h-screen flex item-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-sm p-6 bg-gray-800  rounded-lg  shadow m-20  mb-30">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Sign Up
