@@ -55,4 +55,4 @@ export default function Signup({ signupSuccess }) {
       </div>
     </div>
   );
-};
+}
