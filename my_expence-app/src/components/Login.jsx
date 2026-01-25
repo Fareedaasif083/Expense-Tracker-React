@@ -64,7 +64,7 @@ export default function Login({ loginSuccess }) {
         </form>
         <p className="text-center text-sm mt-2.5 mb-2.5 text-white ">Or</p>
         <Button
-          onclick={handleGoogleLogin}
+          onClick={handleGoogleLogin}
           className="bg-slate-900 text-gray-300 border rounded-4xl w-85"
         >
           Login with Google
