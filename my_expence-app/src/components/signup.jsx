@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { supabase } from "./supabaseClients"
+import { supabase } from "../supabaseClients"
 
 export default function Signup({ signupSuccess }) {
   const [email, setEmail] = useState("");
