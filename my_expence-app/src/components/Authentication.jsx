@@ -4,7 +4,15 @@ import Login from "./Login"
 import Signup from "./signup"
 
 export default function Authentication ({setUser}) {
-  const [showSignup,setShowSignup]=useState(false)
+  const [showSignup,setShowSignup]=useState(false);
+
+  const handleSuccessLogin=(user)=>{
+    setUser(user);
+  }
+  const handleSuccessSignup=(user)=>{
+    setUser(user);
+  }
+  
 
   return(
     <Dialog>
@@ -15,7 +23,7 @@ export default function Authentication ({setUser}) {
         <DialogTitle className="text-center text-2xl font-semibold mb-4">{showSignup ? "Sign Up":"Login"}</DialogTitle>
         {showSignup ?( 
          <>
-           <Signup signupSuccess= {setUser}/>
+           <Signup signupSuccess= {handleSuccessLogin}/>
            <p className="mt-2 text-sm text-center text-white">
              Already have an account?{" "}
              <button className="text-blue-500 underline" onClick={() => setShowSignup(false)}> Login </button>
@@ -23,7 +31,7 @@ export default function Authentication ({setUser}) {
          </>
       ):(
       <>
-           <Login loginSuccess= {setUser}/>
+           <Login loginSuccess= {handleSuccessSignup}/>
            <p className="mt-2 text-sm text-center text-white">
              Don't have an account?{" "}
              <button className="text-blue-500 underline" onClick={() => setShowSignup(true)}> Sign Up</button>
