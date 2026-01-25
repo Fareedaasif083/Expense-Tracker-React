@@ -23,19 +23,11 @@ export default function Authentication ({setUser}) {
         <DialogTitle className="text-center text-2xl font-semibold mb-4">{showSignup ? "Sign Up":"Login"}</DialogTitle>
         {showSignup ?( 
          <>
-           <Signup signupSuccess= {handleSuccessSignup}/>
-           <p className="mt-2 text-sm text-center text-white">
-             Already have an account?{" "}
-             <button className="text-blue-500 underline" onClick={() => setShowSignup(false)}> Login </button>
-           </p>
+           <Signup signupSuccess= {handleSuccessSignup} onFlip={() => setShowSignup(false)}/>
          </>
       ):(
       <>
-           <Login loginSuccess= {handleSuccessLogin}/>
-           <p className="mt-2 text-sm text-center text-white">
-             Don't have an account?{" "}
-             <button className="text-blue-500 underline" onClick={() => setShowSignup(true)}> Sign Up</button>
-           </p>
+           <Login loginSuccess= {handleSuccessLogin} onFlip={() => setShowSignup(true)}/>
          </>
       )}
       </DialogContent>
