@@ -26,7 +26,7 @@ export default function Authentication ({setUser}) {
            <Signup signupSuccess= {handleSuccessLogin}/>
            <p className="mt-2 text-sm text-center text-white">
              Already have an account?{" "}
-             <button className="text-blue-500 underline" onClick={() => setShowSignup(false)}> Login </button>
+             <button className="text-blue-500 underline" onClick={() => setShowSignup(true)}> Login </button>
            </p>
          </>
       ):(
@@ -34,7 +34,7 @@ export default function Authentication ({setUser}) {
            <Login loginSuccess= {handleSuccessSignup}/>
            <p className="mt-2 text-sm text-center text-white">
              Don't have an account?{" "}
-             <button className="text-blue-500 underline" onClick={() => setShowSignup(true)}> Sign Up</button>
+             <button className="text-blue-500 underline" onClick={() => setShowSignup(false)}> Sign Up</button>
            </p>
          </>
       )}
