@@ -34,7 +34,7 @@ export default function Login({ loginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className=" flex items-center justify-center">
       <div className="w-full max-w-sm p-6 bg-gray-800  rounded-lg  shadow m-20  mb-30">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Login
