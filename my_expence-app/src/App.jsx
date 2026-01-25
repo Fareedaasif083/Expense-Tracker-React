@@ -46,7 +46,9 @@ return(
       <main className="max-w-5xl mx-auto px-4 py-6">
          {!user &&(
            <div className="mb-4 ml-500 p-4 bg-yellow-100 text-yellow-800 rounded">
+              <p>
                Please login or signup to save and manage your expenses.
+                 </p>
            </div>
            )}
         <Dashboard expenses={expenses} setExpenses={setExpenses} filters={filters}/>
