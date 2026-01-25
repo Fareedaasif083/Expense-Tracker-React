@@ -34,8 +34,8 @@ export default function Login({ loginSuccess,onFlip }) {
   };
 
   return (
-    <div className=" w-full">
-      <div className="w-full max-w-sm p-6 ">
+    <div className=" w-full flex flex-col items-center">
+      <div className="w-full p-6 ">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Login
         </h2>
@@ -65,7 +65,7 @@ export default function Login({ loginSuccess,onFlip }) {
         <p className="text-center text-sm mt-2.5 mb-2.5 text-white ">Or</p>
         <Button
           onClick={handleGoogleLogin}
-          className="bg-slate-900 text-gray-300 border rounded-4xl w-85"
+          className="bg-slate-900 text-gray-300 border rounded-4xl w-full"
         >
           Login with Google
         </Button>
