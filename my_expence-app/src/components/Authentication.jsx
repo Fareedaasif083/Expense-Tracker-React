@@ -51,8 +51,8 @@ import Signup from "./Signup";
 export default function Authentication({ setUser }) {
   const [showSignup, setShowSignup] = useState(false);
 
-  const handleSuccessLogin = (user) => setUser(user);
-  const handleSuccessSignup = (user) => setUser(user);
+  const handleLoginSuccess = (user) => setUser(user);
+  const handleSignupSuccess = (user) => setUser(user);
 
   return (
     <Dialog>
@@ -67,14 +67,16 @@ export default function Authentication({ setUser }) {
           {showSignup ? "Sign Up" : "Login"}
         </DialogTitle>
 
+        {/* Conditional rendering based on showSignup */}
         {showSignup ? (
           <>
-            <Signup signupSuccess={handleSuccessSignup} />
+            <Signup signupSuccess={handleSignupSuccess} />
+
             <p className="mt-2 text-sm text-center text-white">
               Already have an account?{" "}
               <button
                 className="text-blue-500 underline"
-                onClick={() => setShowSignup(false)} // switches to login
+                onClick={() => setShowSignup(false)}
               >
                 Login
               </button>
@@ -82,12 +84,13 @@ export default function Authentication({ setUser }) {
           </>
         ) : (
           <>
-            <Login loginSuccess={handleSuccessLogin} />
+            <Login loginSuccess={handleLoginSuccess} />
+
             <p className="mt-2 text-sm text-center text-white">
               Don't have an account?{" "}
               <button
                 className="text-blue-500 underline"
-                onClick={() => setShowSignup(true)} // switches to signup
+                onClick={() => setShowSignup(true)}
               >
                 Sign Up
               </button>
