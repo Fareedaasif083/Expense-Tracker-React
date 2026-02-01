@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react"; // adjust the path according to your folder structure
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
