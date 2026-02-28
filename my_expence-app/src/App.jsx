@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import Sidebar  from "./components/ui/Sidebar";
 import {supabase} from "./supabaseClients";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
    const [expenses, setExpenses] = useState([]);
@@ -43,14 +44,16 @@ return(
   <Header user={user} setUser={setUser}/>
   <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
       <main className="max-w-5xl mx-auto px-4 py-6">
-         {!user &&(
+         {/* {!user &&(
            <div className="mb-4  ml-[100px] mr-[20px] p-4 bg-yellow-100 text-yellow-800 rounded ">
               <p>
                Please login or signup to save and manage your expenses.
                  </p>
            </div>
-           )}
+           )} */}
+         <ProtectedRoute user={user}>
         <Dashboard expenses={expenses} setExpenses={setExpenses} filters={filters}/>
+         </ProtectedRoute>
       </main>
     </div>
   );
