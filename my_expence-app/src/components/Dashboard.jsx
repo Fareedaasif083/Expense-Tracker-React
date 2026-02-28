@@ -4,7 +4,7 @@ import ExpenseList from "@/components/ExpenseList";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 
-const Dashboard = ( {expenses,setExpenses,filters}) => {
+const Dashboard = ( {expenses,setExpenses,filters,user}) => {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(null);
 
@@ -64,12 +64,14 @@ const Dashboard = ( {expenses,setExpenses,filters}) => {
           <h2 className="text-xl font-semibold">Expenses</h2>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
+              {user && (
               <Button
                 onClick={openNew}
                 className="bg-slate-900 text-gray-300 border rounded-4xl"
               >
                 New Expense
               </Button>
+              )}
             </DialogTrigger>
             <DialogContent>
               <AddExpenseForm  onAddExpense={saveExpense} />
