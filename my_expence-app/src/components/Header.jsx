@@ -35,9 +35,8 @@ const Header = ({user,setUser}) => {
             }
           </div>
         </div>
-      </header>
-    </div>
-  );
-};
+      </div>
+    </header>
+  )
+}
 
-export default Header;
