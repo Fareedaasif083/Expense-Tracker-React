@@ -42,7 +42,9 @@ function App() {
 return(
   <div className="min-h-screen bg-gray-50">
   <Header user={user} setUser={setUser}/>
-  <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
+     {user && (
+      <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
+      )}
       <main className="max-w-5xl mx-auto px-4 py-6">
          {/* {!user &&(
            <div className="mb-4  ml-[100px] mr-[20px] p-4 bg-yellow-100 text-yellow-800 rounded ">
