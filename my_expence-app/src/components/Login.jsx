@@ -25,7 +25,7 @@ export default function Login({ loginSuccess,onFlip }) {
 
   const handleGoogleLogin = async (e) => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: "Google",
+      provider: "google",
     });
 
     if (error) {
