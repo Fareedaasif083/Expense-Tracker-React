@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { supabase } from "../config/supabaseClients"
+import { supabase } from "../supabaseClients"
 
-export default function Login({ loginSuccess }) {
+export default function Login({ loginSuccess,onFlip }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -26,7 +25,7 @@ export default function Login({ loginSuccess }) {
 
   const handleGoogleLogin = async (e) => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: "Google",
+      provider: "google",
     });
 
     if (error) {
@@ -35,8 +34,8 @@ export default function Login({ loginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen flex item-center justify-center">
-      <div className="w-full max-w-sm p-6 bg-gray-800  rounded-lg  shadow m-20  mb-30">
+    <div className=" w-full flex flex-col items-center">
+      <div className="w-full p-6 ">
         <h2 className="text-2xl font-semibold mt-5 text-center text-white">
           Login
         </h2>
@@ -65,12 +64,16 @@ export default function Login({ loginSuccess }) {
         </form>
         <p className="text-center text-sm mt-2.5 mb-2.5 text-white ">Or</p>
         <Button
-          onclick={handleGoogleLogin}
-          className="bg-slate-900 text-gray-300 border rounded-4xl w-85"
+          onClick={handleGoogleLogin}
+          className="bg-slate-900 text-gray-300 border rounded-4xl w-full"
         >
           Login with Google
         </Button>
-      </div>
+      <div className="mt-4 text-center">
+          <span className="text-white text-sm">Don't have an account? </span>
+          <button onClick={onFlip} className="text-blue-400 text-sm underline">Sign Up</button>
+        </div>
+     </div>
     </div>
   );
 }
