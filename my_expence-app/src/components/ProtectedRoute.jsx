@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProtectedRoute({user,children}){
+export default function ProtectedRoute({user,children}){
   if(!user){
     return(
       <div className="flex flex-col items-center justify-center h-[500px] px-4">
