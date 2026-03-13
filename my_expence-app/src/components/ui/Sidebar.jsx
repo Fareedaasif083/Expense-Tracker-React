@@ -54,8 +54,6 @@ const categories = ["all", ...categoriesArr];
   const handleCategoryChange = (value) => {
     setLocalCategory(value);
     onFilterChange?.({ month: localMonth, category: value });
-    onFilterChange?.({ month: localMonth, catogory: value });
-    onFilterChange?.({ month: localMonth, category: value });
   };
 
   return (
