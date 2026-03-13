@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard";
 import Sidebar  from "./components/ui/Sidebar";
 import {supabase} from "./supabaseClients";
 import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
    const [expenses, setExpenses] = useState([]);
     const [filters, setFilters] = useState({ month: "all", category: "all" });
@@ -55,9 +56,9 @@ function App() {
 return(
   <div className="min-h-screen bg-gray-50">
   <Header user={user} setUser={setUser}/>
-  {user && (
-  <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
-  )}
+     {user && (
+      <Sidebar expenses={expenses } filters={filters} onFilterChange={setFilters} />
+      )}
       <main className="max-w-5xl mx-auto px-4 py-6">
          {/* {!user &&(
            <div className="mb-4  ml-[100px] mr-[20px] p-4 bg-yellow-100 text-yellow-800 rounded ">
@@ -68,7 +69,7 @@ return(
            )} */}
          <ProtectedRoute user={user}>
         <Dashboard user={user} expenses={expenses} setExpenses={setExpenses} filters={filters}/>
-        </ProtectedRoute>
+         </ProtectedRoute>
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import AIChat from "@/components/AIChat";
 
-const Dashboard = ( {user,expenses,setExpenses,filters}) => {
+const Dashboard = ( {expenses,setExpenses,filters,user}) => {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(null);
 
