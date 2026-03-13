@@ -10,10 +10,24 @@ function App() {
     const [filters, setFilters] = useState({ month: "all", category: "all" });
    const [user,setUser]=useState(null);
 
-    useEffect(() => {
-    const stored = localStorage.getItem("expenses");
+  // Supabase auth session
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null)
+    })
+
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => listener.subscription.unsubscribe()
+  }, [])
+
+  // Load expenses from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("expenses")
     if (stored) {
-      setExpenses(JSON.parse(stored));
+      setExpenses(JSON.parse(stored))
     }
   }, []);
 

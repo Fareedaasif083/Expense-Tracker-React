@@ -3,6 +3,7 @@ import AddExpenseForm from "@/components/AddExpenseForm";
 import ExpenseList from "@/components/ExpenseList";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import AIChat from "@/components/AIChat";
 
 const Dashboard = ( {expenses,setExpenses,filters,user}) => {
   const [open, setOpen] = useState(false);
@@ -97,6 +98,7 @@ const Dashboard = ( {expenses,setExpenses,filters,user}) => {
           onEdit={openEdit}
           onDelete={deleteExpense}
         />
+        <AIChat expenses={expenses} />
       </main>
     </div>
   );
