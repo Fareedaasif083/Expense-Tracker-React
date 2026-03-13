@@ -13,9 +13,6 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
   const [localCategory, setLocalCategory] = useState(filters.category || "all");
   
 const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
-
- const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
-
   const setMonths = new Set();
     expenses.forEach((e) => {
       if (e.date) {
