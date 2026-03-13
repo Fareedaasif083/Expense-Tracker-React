@@ -67,7 +67,7 @@ return(
            </div>
            )} */}
          <ProtectedRoute user={user}>
-        <Dashboard expenses={expenses} setExpenses={setExpenses} filters={filters}/>
+        <Dashboard user={user} expenses={expenses} setExpenses={setExpenses} filters={filters}/>
         </ProtectedRoute>
       </main>
     </div>
