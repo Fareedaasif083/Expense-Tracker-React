@@ -13,14 +13,22 @@ const Sidebar = ({ expenses = [], filters = {}, onFilterChange }) => {
   const [localCategory, setLocalCategory] = useState(filters.category || "all");
   
 const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
-  const setMonths = new Set();
+  // const setMonths = new Set();
+  //   expenses.forEach((e) => {
+  //     if (e.date) {
+  //       const m = new Date(e.date).toLocaleString("default", { month: "long" });
+  //       setMonths.add(m);
+  //     }
+  //   });
+  //   const months= ["all", ...Array.from(setMonths
+  let monthsArr = [];
     expenses.forEach((e) => {
-      if (e.date) {
-        const m = new Date(e.date).toLocaleString("default", { month: "long" });
-        setMonths.add(m);
-      }
-    });
-    const months= ["all", ...Array.from(setMonths)];
+  if (e.date) {
+    const m = new Date(e.date).toLocaleString("default", { month: "long" });
+    if (!monthsArr.includes(m)) monthsArr.push(m);
+  }
+});
+const months = ["all", ...monthsArr];
 
 
   const handleMonthChange = (value) => {
@@ -28,13 +36,20 @@ const total = expenses.reduce((n, e) => n + Number(e.amount), 0);
     onFilterChange?.({ month: value, category: localCategory });
   };
 
-  const setCategories = new Set();
-    expenses.forEach((e) => {
-      if (e.category) {
-        setCategories.add(e.category);
-      }
-    });
-    const categories= ["all", ...Array.from(setCategories)];
+  // const setCategories = new Set();
+  //   expenses.forEach((e) => {
+  //     if (e.category) {
+  //       setCategories.add(e.category);
+  //     }
+  //   });
+  //   const categories= ["all", ...Array.from(setCategories)];
+  let categoriesArr = [];
+     expenses.forEach((e) => {
+  if (e.category && !categoriesArr.includes(e.category)) {
+    categoriesArr.push(e.category);
+  }
+});
+const categories = ["all", ...categoriesArr];
 
   const handleCategoryChange = (value) => {
     setLocalCategory(value);
