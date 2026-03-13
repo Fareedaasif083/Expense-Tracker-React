@@ -63,25 +63,21 @@ const Dashboard = ( {user,expenses,setExpenses,filters}) => {
       <main className="flex-1 p-6 ml-64">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">Expenses</h2>
-          {user && (
           <Dialog open={open} onOpenChange={setOpen}>
-            
             <DialogTrigger asChild>
-              
+              {user && (
               <Button
                 onClick={openNew}
                 className="bg-slate-900 text-gray-300 border rounded-4xl"
               >
                 New Expense
               </Button>
-              
+              )}
             </DialogTrigger>
-            
             <DialogContent>
               <AddExpenseForm  onAddExpense={saveExpense} />
             </DialogContent>
           </Dialog>
-          )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           <div className=" bg-white text-center p-4 shadow rounded-xl ">
