@@ -1,155 +1,92 @@
-// import React, { useState } from "react";
-
-// const AIChat = ({ expenses }) => {
-
-//   const [message, setMessage] = useState("");
-//   const [reply, setReply] = useState("");
-//   const [loading, setLoading] = useState(false);
-
-//   const askAI = async () => {
-
-//     if (!message) return;
-
-//     setLoading(true);
-
-//     const res = await fetch("/api/chat", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify({
-//         message,
-//         expenses
-//       })
-//     });
-
-//     const data = await res.json();
-
-//     setReply(data.reply);
-//     setLoading(false);
-//   };
-
-//   return (
-//     <div className="bg-white p-4 rounded-xl shadow mt-6">
-
-//       <h3 className="font-semibold mb-2">
-//         AI Expense Assistant
-//       </h3>
-
-//       <input
-//         value={message}
-//         onChange={(e) => setMessage(e.target.value)}
-//         placeholder="Ask about your spending"
-//         className="border p-2 w-full rounded"
-//       />
-
-//       <button
-//         onClick={askAI}
-//         className="bg-slate-900 text-white px-4 py-2 rounded mt-2"
-//       >
-//         Ask AI
-//       </button>
-
-//       {loading && <p className="mt-2">Thinking...</p>}
-
-//       {reply && (
-//         <div className="mt-3 bg-gray-100 p-3 rounded">
-//           {reply}
-//         </div>
-//       )}
-
-//     </div>
-//   );
-// };
-
-// export default AIChat;
-
 import React, { useState } from "react";
 
 const AIChat = ({ expenses }) => {
-const [message, setMessage] = useState("");
-const [reply, setReply] = useState("");
-const [loading, setLoading] = useState(false);
 
-const askAI = async () => {
-if (!message) return;
+  const [message, setMessage] = useState('');
+  const [reply, setReply] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-setLoading(true);
-setReply("");
+  const sendMessage = async () => {
+    if (!message.trim()) return;
 
-try {
-  const res = await fetch(
-    "https://api.groq.com/openai/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [
-          {
-            role: "user",
-            content: `User expenses: ${JSON.stringify(expenses)}. User question: ${message}. Give short advice in 2 sentences.`
-          }
-        ],
-        max_tokens: 200,
-        temperature: 0.5
-      })
+    const userMsg = {
+      role: "user",
+      content: message
     }
-  );
 
-  if (!res.ok) {
-    const err = await res.text();
-    setReply("Error: " + err);
+    setReply((prev) => [...prev, userMsg]);
+    setMessage("");
+
+    setLoading(true);
+    await aiResponse(message);
     setLoading(false);
-    return;
-  }
+  };
 
-  const data = await res.json();
+  const aiResponse = async (userMessage) => {
+    try {
+      const response = await fetch(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "llama-3.1-8b-instant",
+            messages: [
+              {
+                role: "user",
+                content: `Expenses: ${JSON.stringify(expenses || [])}.User Question: ${userMessage}. Give short answer in two lines`
+              }
+            ]
+          })
+        }
+      )
+      const data = await response.json();
+      const aiText = data.choices[0].message?.content || "no expenses";
+      setReply((prev) => [
+        ...prev, { role: "ai", content: aiText }
+      ]);
 
-  const text =
-    data?.choices?.[0]?.message?.content ||
-    "No response received";
+    } catch (error) {
+      setReply((prev) => [
+        ...prev,
+        { role: "ai", content: "Error happened" }
+      ]);
+    }
+  };
 
-  setReply(text);
-} catch (err) {
-  setReply("Request failed: " + err.message);
-}
 
-setLoading(false);
+  return (
+    <div className="flex flex-col h-[400px] bg-white max-w-2xl mx-auto rounded-2xl border shadow-lg">
+      <div className="flex item-center gap-3 p-4 border-b">
+        <div>
+          <p className=" font-semibold">AL Expense Assistant</p>
+          <p className="text-sm text-gray-500">Smart Financial Insights</p>
+        </div>
+      </div>
 
-};
+      <div className="flex-1 overflow-y-auto bg-gray-50 p-4">
+        {reply.length === 0 && (
+          <p className="text-gray-500 text-center text-sm">Start talking to AI here</p>
+        )}
 
-return (
-<div className="bg-white p-4 rounded-xl shadow mt-6">
-<h3 className="font-semibold mb-2">AI Expense Assistant</h3>
+        {reply.map((msg, index) => (
+          <div key={index} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}><div className={`px-4 py-2 rounded-xl max-w-[70%] ${msg.role === "user" ? "bg-slate-900 text-white" : "bg-white border"}`}>{msg.content}</div></div>
+        ))}
 
-  <input
-    value={message}
-    onChange={(e) => setMessage(e.target.value)}
-    placeholder="Ask about your spending"
-    className="border p-2 w-full rounded"
-  />
+        {loading && (
 
-  <button
-    onClick={askAI}
-    className="bg-slate-900 text-white px-4 py-2 rounded mt-2"
-  >
-    Ask AI
-  </button>
+          <p className="text-sm text-gray-500">Thinking...</p>)}
+      </div>
 
-  {loading && <p className="mt-2">Thinking...</p>}
-
-  {reply && (
-    <div className="mt-3 bg-gray-100 p-3 rounded">
-      {reply}
+      <div className="flex border-t p-4 gap-2">
+        <input className="flex-1 rounded-full border px-3 py-2" placeholder="Ask about your expenses..." value={message} onChange={(e) => setMessage(e.target.value)} />
+        <button className="bg-slate-900 text-white rounded-full px-3 py-2" onClick={sendMessage}>Send</button>
+      </div>
     </div>
-  )}
-</div>
-
-);
+  )
 };
 
 export default AIChat;
